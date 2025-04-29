@@ -1,0 +1,29 @@
+\usepackage{listings}
+\usepackage{graphicx}     % Para incluir imágenes
+\usepackage{lastpage}     % Para mostrar total de páginas (opcional)
+\lstset{
+  breaklines=true,
+  breakatwhitespace=true,
+  basicstyle=\ttfamily\small,
+}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}     % Limpia encabezado y pie
+\fancyhead[L]{Manual del Instalación k8s}    % Izquierda
+\fancyhead[C]{BDP}             % Centro
+\fancyhead[R]{\today}                 % Derecha
+\fancyfoot[C]{\thepage}               % Número de página centrado
+
+
+% Imagen a la izquierda del encabezado
+\fancyhead[L]{%
+  \includegraphics[height=1.2cm]{assets/img/Logo-BDP}
+}
+
+% Texto al centro y derecha
+\fancyhead[C]{Manual del Configuración k8s}
+%\fancyhead[R]{\today}
+
+% Pie de página con número de página centrado
+\fancyfoot[C]{Página \thepage\ de \pageref{LastPage}}
