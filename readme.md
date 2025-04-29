@@ -1,12 +1,22 @@
+---
+title: "Manual del Proyecto"
+author: "Tu Nombre"
+lang: es
+fontsize: 11pt
+geometry: margin=2.5cm
+mainfont: Arial
+linkcolor: blue
+---
+
 # **Configuración del k8s con nodos worker**
 
-![image1]( ./img/01.png "k8s-nodes")
+![image1]( ./assets/img/01.png "k8s-nodes")
 
 ## **Pasos para realizar la configuración**
 
 Primero necesita instalar **microk8s** en su servidor maestro y en los nodos que necesita.
 
-Para facilitar su instalación, utilice el script [`01_install_k8s.sh`](./scripts/01_install_k8s.sh) ubicado en la carpeta de `scripts/01_install_k8s.sh` para automatizar su instalación.
+Para facilitar su instalación, utilice el script [`01_install_k8s.sh`](./assets/scripts/01_install_k8s.sh) ubicado en la carpeta de `scripts/01_install_k8s.sh` para automatizar su instalación.
 
 > La versión de microk8s que es instalará para esta configuración es `MicroK8s v1.28`
 
@@ -18,7 +28,7 @@ Por defecto, ya viene habilitado helm con tras la instalación de microk8s. Si n
 
 La versión el para helm, en esta configuración es la siguiente:
 
-![image2]( ./img/version-helm.png "helm-version")
+![image2]( ./assets/img/version-helm.png "helm-version")
 
 ### Añadir Nodos
 
@@ -30,17 +40,17 @@ microk8s add-node
 
 Una vez ejecutado el comando anterior, se le mostrará la siguiente información:
 
-![image3]( ./img/token-nodeworker.png "alt-img")
+![image3]( ./assets/img/token-nodeworker.png "alt-img")
 
 Utilize ese comando marcado en la imagen de arriba, en su servidor que actuará como nodo worker:
 
 Una vez ejecutado el comando, se espera una salida como la siguiente:
 
-![image4]( ./img/output-nodeworker.png "alt-img")
+![image4]( ./assets/img/output-nodeworker.png "alt-img")
 
 Esta salida indica que los nodos han sido vinculados exitosamente al nodo master.
 
-![image4]( ./img/nodes-ready.png "alt-img")
+![image4]( ./assets/img/nodes-ready.png "alt-img")
 
 Una vez realizada esta configuración, puedes pasar a configurar el metallb
 
@@ -62,11 +72,11 @@ helm upgrade --install metallb  metallb/metallb --create-namespace --namespace m
 
 Si todo va vien verifique que los speakers esten en `Running`
 
-![image5]( ./img/get-metallb-system.png "alt-img")
+![image5]( ./assets/img/get-metallb-system.png "alt-img")
 
 Luego aplique loa configuración `IPAddressPool` y `L2Advertisement` que metallb necesita, para ello se proporciona el archivo `metallb-config.yaml`
 
-Archivo: [`metallb-config.yaml`](./yaml/metallb-config.yaml)
+Archivo: [`metallb-config.yaml`](./assets/yaml/metallb-config.yaml)
 
 ```yaml
 apiVersion: metallb.io/v1beta1
@@ -103,13 +113,13 @@ l2advertisement.metallb.io/l2-adv configurated
 ```
 ### Configuración del Ingress
 
-Aplique la configuración del archivo [`ingress-route.yaml`](./yaml/ingress-route.yaml)
+Aplique la configuración del archivo [`ingress-route.yaml`](./assets/yaml/ingress-route.yaml)
 
 ```bash
 kubectl apply -f ingress.route.yaml
 ```
 
-Aplique la configuración del archivo [`app-hello.yaml`](./yaml/app-hello.yaml)
+Aplique la configuración del archivo [`app-hello.yaml`](./assets/yaml/app-hello.yaml)
 
 ```bash
 kubectl apply -f app-hello.yaml
@@ -118,5 +128,5 @@ kubectl apply -f app-hello.yaml
 Este archivo contiene la configuracion del `Service` y el `Deployment` necesarios para desplegar el servicio y el pod
 
 
-![alt text](./img/gte-allpods.png)
+![alt text](./assets/img/gte-allpods.png)
 
