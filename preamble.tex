@@ -1,12 +1,12 @@
-\usepackage{listings}
+
 \usepackage{graphicx}     % Para incluir imágenes
 \usepackage{lastpage}     % Para mostrar total de páginas (opcional)
+\usepackage{fancyhdr}
 \lstset{
   breaklines=true,
   breakatwhitespace=true,
   basicstyle=\ttfamily\small,
 }
-\usepackage{fancyhdr}
 
 \pagestyle{fancy}
 \fancyhf{}     % Limpia encabezado y pie
@@ -23,7 +23,29 @@
 
 % Texto al centro y derecha
 \fancyhead[C]{Manual del Configuración k8s}
-%\fancyhead[R]{\today}
+\fancyhead[R]{\today}
 
 % Pie de página con número de página centrado
 \fancyfoot[C]{Página \thepage\ de \pageref{LastPage}}
+
+% Evitar numeración de figuras
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
+
+\usepackage{float}
+\floatplacement{figure}{H} % Las imágenes no flotarán
+
+
+% Configuración del estilo del código
+\usepackage{xcolor}  % Para colores adicionales
+\usepackage{listings}
+\lstset{
+    backgroundcolor=\color{gray!10}, % Fondo gris claro
+    basicstyle=\ttfamily\small,     % Fuente teletipo pequeña
+    frame=single,                   % Marco simple alrededor del código
+    rulecolor=\color{gray!80},      % Color del marco
+    keywordstyle=\color{blue},      % Estilo para palabras clave
+}       
+
+% \usepackage{setspace}
+% \onehalfspacing  % Establece el interlineado a 1.5
